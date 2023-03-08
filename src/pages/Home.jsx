@@ -21,15 +21,18 @@ function Home() {
   }, []);
 
   return (
-    <ul>
-      {hits.map(({ title, id }) => {
-        return (
-          <li key={id}>
-            <Link to={`/movies/${id}`}>{title}</Link>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <h1>Trending today</h1>
+      <ul>
+        {hits.map(({ title, id }) => {
+          return (
+            <li key={id}>
+              <Link to={`/movies/${id}`}>{title}</Link>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
 

@@ -1,5 +1,12 @@
 import React from 'react';
 
 export default function Movies() {
-  return <div>Movies</div>;
+  return (
+    <>
+      <label>
+        <input type="text" />
+      </label>
+      <button type="submit">Search</button>
+    </>
+  );
 }

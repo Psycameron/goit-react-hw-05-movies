@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
@@ -19,12 +19,11 @@ export const App = () => {
     // }}
     >
       <header>
-        <nav>
-          <a href="#">Home</a>
-          <a href="#">Movies</a>
+        <nav style={{ height: 50 }}>
+          <Link to="/">Home</Link>
+          <Link to="/movies">Movies</Link>
         </nav>
       </header>
-      <h1>Trending today</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />}>

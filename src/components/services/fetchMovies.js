@@ -16,3 +16,15 @@ export async function fetchPopularMovies() {
     console.log(`🚀 ~ fetchPopularMovies ~ error:`, error);
   }
 }
+
+export async function fetchSearchMovies(query) {
+  try {
+    const response = `search/movie?query=${query}&api_key=${API_KEY}`;
+
+    const { data } = await axios.get(response);
+
+    return data;
+  } catch (error) {
+    console.log(`🚀 ~ fetchPopularMovies ~ error:`, error);
+  }
+}

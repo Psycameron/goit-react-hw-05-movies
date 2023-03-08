@@ -8,16 +8,7 @@ import Reviews from './Reviews/Reviews';
 
 export const App = () => {
   return (
-    <div
-    // style={{
-    //   height: '100vh',
-    //   display: 'flex',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   fontSize: 40,
-    //   color: '#010101',
-    // }}
-    >
+    <div>
       <header>
         <nav style={{ height: 50 }}>
           <Link to="/">Home</Link>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { fetchPopularMovies } from 'services/fetchMovies';
+import { fetchPopularMovies } from 'components/services/fetchMovies';
 
 function Home() {
   const [hits, setHits] = useState([]);

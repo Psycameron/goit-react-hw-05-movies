@@ -5,6 +5,8 @@ const API_KEY = '6bc3884873d8f590ffada24647960cbf';
 
 axios.defaults.baseURL = BASE_URL;
 
+// get popular movies
+
 export async function fetchPopularMovies() {
   try {
     const response = `/trending/movie/day?api_key=${API_KEY}`;
@@ -17,9 +19,25 @@ export async function fetchPopularMovies() {
   }
 }
 
+//get movies by query
+
 export async function fetchSearchMovies(query) {
   try {
     const response = `search/movie?query=${query}&api_key=${API_KEY}`;
+
+    const { data } = await axios.get(response);
+
+    return data;
+  } catch (error) {
+    console.log(`🚀 ~ fetchPopularMovies ~ error:`, error);
+  }
+}
+
+// get movie by Id
+
+export async function fetchMovieById(movieId) {
+  try {
+    const response = `/movie/${movieId}?api_key=${API_KEY}`;
 
     const { data } = await axios.get(response);
 

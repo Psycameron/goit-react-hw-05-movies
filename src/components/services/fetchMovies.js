@@ -46,3 +46,15 @@ export async function fetchMovieById(movieId) {
     console.log(`🚀 ~ fetchPopularMovies ~ error:`, error);
   }
 }
+
+export async function fetchMovieCast(movieId) {
+  try {
+    const response = `/movie/${movieId}/credits?api_key=${API_KEY}`;
+
+    const { data } = await axios.get(response);
+
+    return data;
+  } catch (error) {
+    console.log(`🚀 ~ fetchPopularMovies ~ error:`, error);
+  }
+}

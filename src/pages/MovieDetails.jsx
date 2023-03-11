@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { fetchMovieById } from 'components/services/fetchMovies';
@@ -36,13 +36,14 @@ export default function MovieDetails() {
         <h4>Additional information</h4>
         <ul>
           <li>
-            <Link>Cast</Link>
+            <Link to="cast">Cast</Link>
           </li>
           <li>
-            <Link>Reviews</Link>
+            <Link to="reviews">Reviews</Link>
           </li>
         </ul>
       </div>
+      <Outlet />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import { fetchSearchMovies } from 'components/services/fetchMovies';
 
@@ -8,6 +8,8 @@ import css from './Movies.module.css';
 export default function Movies() {
   const [hits, setHits] = useState([]);
   const [query, setQuery] = useState('');
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const fetchData = async () => {
     try {
@@ -23,7 +25,7 @@ export default function Movies() {
     setQuery(e.currentTarget.value.toLowerCase());
   };
 
-  const handlerSearchSubmit = e => {
+  const handleSearchSubmit = e => {
     e.preventDefault();
 
     if (query.trim() === '') {
@@ -32,12 +34,15 @@ export default function Movies() {
 
     fetchData();
 
+    const nextParams = query !== '' ? { query } : {};
+    setSearchParams(nextParams);
+
     setQuery('');
   };
 
   return (
     <>
-      <form className={css.SearchForm} onSubmit={handlerSearchSubmit}>
+      <form className={css.SearchForm} onSubmit={handleSearchSubmit}>
         <input
           className={css.SearchFormInput}
           type="text"

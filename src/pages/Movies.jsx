@@ -1,25 +1,34 @@
-import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 
 import { fetchSearchMovies } from 'components/services/fetchMovies';
 
 import css from './Movies.module.css';
 
 export default function Movies() {
-  const [hits, setHits] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const fullPath = location.pathname + location.search;
+  const movieName = searchParams.get('query');
 
-  const fetchData = async () => {
-    try {
-      const { results } = await fetchSearchMovies(query);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!movieName) {
+        return;
+      }
 
-      setHits(results);
-    } catch (error) {
-      console.log(`🚀 ~ fetchData ~ error:`, error);
-    }
-  };
+      try {
+        const movies = await fetchSearchMovies(movieName);
+        setMovies(movies.results);
+      } catch (error) {
+        console.log(`🚀 ~ fetchData ~ error:`, error);
+      }
+    };
+    fetchData();
+  }, [movieName]);
 
   const handleQueryChange = e => {
     setQuery(e.currentTarget.value.toLowerCase());
@@ -31,8 +40,6 @@ export default function Movies() {
     if (query.trim() === '') {
       return alert('Введи запрос для поиска');
     }
-
-    fetchData();
 
     const nextParams = query !== '' ? { query } : {};
     setSearchParams(nextParams);
@@ -58,10 +65,12 @@ export default function Movies() {
         </button>
       </form>
       <ul>
-        {hits.map(({ title, id }) => {
+        {movies.map(({ title, id }) => {
           return (
             <li key={id}>
-              <Link to={`/movies/${id}`}>{title}</Link>
+              <Link to={`/movies/${id}`} state={{ from: fullPath }}>
+                {title}
+              </Link>
             </li>
           );
         })}

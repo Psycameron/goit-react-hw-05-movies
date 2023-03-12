@@ -1,0 +1,17 @@
+.list {
+  margin-top: 16px;
+}
+
+.item {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.item:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.item:hover {
+  color: #df5f24;
+}

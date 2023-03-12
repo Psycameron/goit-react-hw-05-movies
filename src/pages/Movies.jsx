@@ -49,9 +49,9 @@ export default function Movies() {
 
   return (
     <>
-      <form className={css.SearchForm} onSubmit={handleSearchSubmit}>
+      <form className={css.searchForm} onSubmit={handleSearchSubmit}>
         <input
-          className={css.SearchFormInput}
+          className={css.searchFormInput}
           type="text"
           autoComplete="off"
           autoFocus
@@ -60,14 +60,14 @@ export default function Movies() {
           onChange={handleQueryChange}
         />
 
-        <button type="submit" className={css.SearchFormButton}>
-          <span className={css.SearchFormButtonLabel}>Search</span>
+        <button type="submit" className={css.searchFormButton}>
+          <span className={css.searchFormButtonLabel}>Search</span>
         </button>
       </form>
-      <ul>
+      <ul className={css.moviesList}>
         {movies.map(({ title, id }) => {
           return (
-            <li key={id}>
+            <li key={id} className={css.moviesItem}>
               <Link to={`/movies/${id}`} state={{ from: location }}>
                 {title}
               </Link>

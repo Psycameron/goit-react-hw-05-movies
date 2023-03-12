@@ -1,0 +1,19 @@
+.castList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.castItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.castImg {
+  width: 250px;
+}
+
+.span {
+  font-weight: 600;
+}

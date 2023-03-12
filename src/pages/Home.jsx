@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { fetchPopularMovies } from 'components/services/fetchMovies';
 
+import css from './Home.module.css';
+
 function Home() {
   const [hits, setHits] = useState([]);
 
@@ -23,10 +25,10 @@ function Home() {
   return (
     <>
       <h1>Trending today</h1>
-      <ul>
+      <ul className={css.list}>
         {hits.map(({ title, id }) => {
           return (
-            <li key={id}>
+            <li className={css.item} key={id}>
               <Link to={`/movies/${id}`}>{title}</Link>
             </li>
           );

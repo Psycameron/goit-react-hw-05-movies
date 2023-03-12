@@ -1,0 +1,38 @@
+.searchForm {
+  display: flex;
+  gap: 10px;
+
+  margin-bottom: 16px;
+}
+
+.searchFormInput {
+  padding: 10px;
+}
+
+.searchFormButton {
+  padding: 8px 16px;
+
+  border-radius: 6px;
+  border: 2px solid black;
+  color: black;
+  font-weight: 500;
+  color: #df5f24;
+  background-color: #faf9f9;
+  cursor: pointer;
+}
+
+.searchFormButtonLabel {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.moviesList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.moviesItem {
+  font-size: 16px;
+  font-weight: 500;
+}

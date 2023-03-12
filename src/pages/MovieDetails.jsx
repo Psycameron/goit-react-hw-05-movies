@@ -2,6 +2,8 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import blankImage from '../images/white_image.png';
+
 import { fetchMovieById } from 'components/services/fetchMovies';
 
 import css from './MovieDetails.module.css';
@@ -27,6 +29,7 @@ export default function MovieDetails() {
   const userScore = Math.round((Number(vote_average) * 100) / 10);
   const releaseDate = release_date.slice(0, 4);
   const prevLocation = location.state?.from ?? '/';
+  const imageSRC = poster_path ? IMAGEURL + poster_path : blankImage;
 
   return (
     <div className={css.wrapper}>
@@ -37,11 +40,7 @@ export default function MovieDetails() {
       </Link>
 
       <div className={css.movieCard}>
-        <img
-          className={css.poster}
-          src={IMAGEURL + poster_path}
-          alt="poster img"
-        />
+        <img className={css.poster} src={imageSRC} alt="poster img" />
         <div className={css.movieInfo}>
           <h2>
             {title} ({releaseDate})

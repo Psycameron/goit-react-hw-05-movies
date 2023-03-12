@@ -6,7 +6,7 @@ import { fetchSearchMovies } from 'components/services/fetchMovies';
 import css from './Movies.module.css';
 
 export default function Movies() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
   const [query, setQuery] = useState('');
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -48,7 +48,7 @@ export default function Movies() {
   };
 
   return (
-    <>
+    <main>
       <form className={css.searchForm} onSubmit={handleSearchSubmit}>
         <input
           className={css.searchFormInput}
@@ -64,17 +64,25 @@ export default function Movies() {
           <span className={css.searchFormButtonLabel}>Search</span>
         </button>
       </form>
-      <ul className={css.moviesList}>
-        {movies.map(({ title, id }) => {
-          return (
-            <li key={id} className={css.moviesItem}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
-                {title}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+
+      <div>
+        {movies &&
+          (movies.length > 0 ? (
+            <ul className={css.moviesList}>
+              {movies.map(({ title, id }) => {
+                return (
+                  <li key={id} className={css.moviesItem}>
+                    <Link to={`/movies/${id}`} state={{ from: location }}>
+                      {title}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p>No movies with that title</p>
+          ))}
+      </div>
+    </main>
   );
 }
